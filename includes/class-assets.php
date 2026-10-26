@@ -1,6 +1,6 @@
 <?php
 
-namespace Widget_Loco\Includes;
+namespace Widget_Banner\Includes;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -47,6 +47,8 @@ class Assets
         if ($hook !== 'toplevel_page_widget-loco') {
             return;
         }
+
+        wp_enqueue_media();
 
         wp_enqueue_style(
             'widget-loco-admin',

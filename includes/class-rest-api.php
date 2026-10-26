@@ -1,6 +1,6 @@
 <?php
 
-namespace Widget_Loco\Includes;
+namespace Widget_Banner\Includes;
 
 if (!defined('ABSPATH')) {
     exit;

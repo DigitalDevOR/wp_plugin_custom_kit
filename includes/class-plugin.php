@@ -1,10 +1,10 @@
 <?php
 
-namespace Widget_Loco\Includes;
+namespace Widget_Banner\Includes;
 
-use Widget_Loco\Admin\Admin_Page;
-use Widget_Loco\Public_Frontend\Frontend_Renderer;
-use Widget_Loco\Includes\Assets;
+use Widget_Banner\Admin\Admin_Page;
+use Widget_Banner\Public_Frontend\Frontend_Renderer;
+use Widget_Banner\Includes\Assets;
 
 if (!defined('ABSPATH')) {
     exit;

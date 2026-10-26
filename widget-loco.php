@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Widget Loco
- * Description: Plugin con shortcode, rendering server-side, admin dashboard e asset frontend.
- * Version: 1.0.0
+ * Plugin Name: Widget Banner
+ * Description: Media kit pubblicitario interattivo per Radio Kiss Kiss Napoli.
+ * Version: 1.3.5
  * Author: Only Radio
  * Text Domain: widget-loco
  */
@@ -11,12 +11,13 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('WIDGET_LOCO_VERSION', '1.0.0');
+define('WIDGET_LOCO_VERSION', '1.3.5');
 define('WIDGET_LOCO_FILE', __FILE__);
 define('WIDGET_LOCO_PATH', plugin_dir_path(__FILE__));
 define('WIDGET_LOCO_URL', plugin_dir_url(__FILE__));
 
 require_once WIDGET_LOCO_PATH . 'includes/helpers.php';
+require_once WIDGET_LOCO_PATH . 'includes/google-analytics.php';
 require_once WIDGET_LOCO_PATH . 'includes/class-plugin.php';
 require_once WIDGET_LOCO_PATH . 'includes/class-assets.php';
 require_once WIDGET_LOCO_PATH . 'includes/class-shortcode.php';
@@ -26,7 +27,7 @@ require_once WIDGET_LOCO_PATH . 'admin/class-admin-page.php';
 
 function widget_loco_run(): void
 {
-    $plugin = new Widget_Loco\Includes\Plugin();
+    $plugin = new Widget_Banner\Includes\Plugin();
     $plugin->run();
 }
 

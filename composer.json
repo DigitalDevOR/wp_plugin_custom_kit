@@ -4,8 +4,14 @@
         "johnpbloch/wordpress": "^7.0"
     },
     "config": {
+        "platform": {
+            "php": "8.1.33"
+        },
         "allow-plugins": {
             "johnpbloch/wordpress-core-installer": true
         }
+    },
+    "require": {
+        "google/analytics-data": "^0.26.0"
     }
 }

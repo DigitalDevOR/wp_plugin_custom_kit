@@ -1,5 +1,5 @@
 .widget-loco-admin {
-    max-width: 900px;
+    max-width: 1400px;
 }
 
 .widget-loco-admin-card {
@@ -12,6 +12,161 @@
 
 .widget-loco-admin-card h2 {
     margin-top: 0;
+}
+
+.widget-banner-page-card {
+    margin: 16px 0;
+    border-left: 4px solid #2271b1;
+}
+
+.widget-banner-page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.widget-banner-page-heading h3 {
+    margin: 0;
+}
+
+.widget-banner-page-card input[type="text"] {
+    width: 100%;
+    max-width: 420px;
+}
+
+.widget-banner-page-card code {
+    margin-top: 4px;
+}
+
+.widget-banner-logo-field {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.widget-banner-logo-label {
+    flex-basis: 100%;
+    font-weight: 600;
+}
+
+.widget-banner-logo-preview {
+    display: block;
+    width: auto;
+    max-width: 220px;
+    height: auto;
+    max-height: 90px;
+    object-fit: contain;
+    padding: 8px;
+    border: 1px solid #dcdcde;
+    background: #f6f7f7;
+}
+
+.widget-loco-admin-field {
+    margin-top: 20px;
+}
+
+.widget-loco-admin-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.widget-loco-admin-field input[type="color"] {
+    width: 64px;
+    height: 40px;
+    padding: 2px;
+}
+
+.widget-loco-admin-field textarea {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+}
+
+.widget-banner-formats-heading {
+    margin-top: 36px;
+}
+
+.widget-banner-formats-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.widget-banner-formats-tools label {
+    font-weight: 600;
+}
+
+.widget-banner-formats-tools input[type="search"] {
+    width: min(100%, 380px);
+}
+
+.widget-banner-format-count {
+    color: #50575e;
+}
+
+.widget-banner-formats-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 16px 0;
+}
+
+.widget-banner-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0 20px;
+}
+
+.widget-banner-pagination .button[aria-current="page"] {
+    border-color: #2271b1;
+    background: #2271b1;
+    color: #fff;
+}
+
+.widget-banner-formats-table {
+    min-width: 2250px;
+    table-layout: fixed;
+}
+
+.widget-banner-formats-table th,
+.widget-banner-formats-table td {
+    min-width: 150px;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.widget-banner-formats-table th:first-child,
+.widget-banner-formats-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 120px;
+    background: #f6f7f7;
+}
+
+.widget-banner-formats-table thead th:first-child {
+    z-index: 2;
+}
+
+.widget-banner-formats-table select,
+.widget-banner-formats-table input,
+.widget-banner-formats-table textarea {
+    width: 100%;
+    min-width: 125px;
+}
+
+.widget-banner-formats-table textarea {
+    min-height: 58px;
+    resize: vertical;
+}
+
+.widget-banner-formats-table input[type="number"] {
+    min-width: 100px;
 }
 
 .widget-loco-admin code {

@@ -4,194 +4,171 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$instance_id = wp_unique_id('widget-banner-');
+$format_categories = [
+    'standard' => 'Standard',
+    'impact' => 'Impact',
+    'video' => 'Video e audio',
+    'native' => 'Native',
+    'sponsor' => 'Sponsorship',
+];
+
 ?>
 
-<div style="width: 100vw; all: initial; display: block; font-family: 'Bebas Neue', sans-serif;">
-    <style>
-        .loco-widget {
-            font-family: 'Inter', sans-serif;
-        }
+<div
+    id="<?php echo esc_attr($instance_id); ?>"
+    class="widget-banner-page"
+    data-widget-banner
+    data-radio-name="<?php echo esc_attr($options['name']); ?>"
+    data-formats="<?php echo esc_attr($formats_json); ?>"
+    style="--blue: <?php echo esc_attr($options['primary_color']); ?>; --blue-rgb: <?php echo esc_attr($primary_color_rgb); ?>;"
+>
 
-        .loco-widget h1,
-        .loco-widget h2,
-        .loco-widget h3,
-        .loco-widget h4,
-        .loco-widget h5,
-        .loco-widget h6,
-        .loco-widget .hero-title,
-        .loco-widget .section-title,
-        .loco-widget .prize-title,
-        .loco-widget .step-title,
-        .loco-widget .step-num,
-        .loco-widget .btn-submit,
-        .loco-widget .btn-cta {
-            font-family: 'Bebas Neue', sans-serif;
-        }
-    </style>
-
-
-    <!-- TOPBAR: solo Kiss Kiss -->
-    <div class="topbar">
-        <img class="topbar-logo-kk" />
-
-    <!-- HERO -->
-    <section class="hero">
-        <p class="eyebrow">Concorso esclusivo Radio Kiss Kiss</p>
-
-        <div class="hero-logos">
-            <div class="logos-section">
-                <img class="custom-logo-style" src="<?php echo WIDGET_LOCO_URL . 'public/logo.png'; ?>" alt="Logo Radio Kiss Kiss" />
-                <span class="hero-logos-x">×</span>
-                <img class="custom-logo-pacha-style" src="<?php echo WIDGET_LOCO_URL . 'public/pacha.svg'; ?>" alt="Logo pacha" />
+    <header class="hero">
+        <div class="wrap">
+            <div class="topbar">
+                <a class="mark" href="#<?php echo esc_attr($instance_id); ?>-formati" aria-label="<?php echo esc_attr($options['name']); ?>">
+                    <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr($options['name']); ?>">
+                </a>
+                <nav aria-label="Sezioni">
+                    <a href="#<?php echo esc_attr($instance_id); ?>-formati">Formati</a>
+                    <a href="#<?php echo esc_attr($instance_id); ?>-listino">Listino</a>
+                    <a href="#<?php echo esc_attr($instance_id); ?>-contatti">Contatti</a>
+                </nav>
+                <?php if ($media_mensile_utenti_totale !== null) : ?>
+                    <div class="stats-badge">
+                        <span class="num"><?php echo esc_html(number_format_i18n($media_mensile_utenti_totale, 0)); ?></span>
+                        <span class="lbl">Utenti medi mensili</span>
+                    </div>
+                <?php elseif (current_user_can('manage_options')) : ?>
+                    <p class="widget-banner-ga-warning">
+                        <?php if ($options['property_id'] === '') : ?>
+                            Contatore Analytics non configurato: inserisci il Property ID nelle impostazioni della configurazione.
+                        <?php else : ?>
+                            Contatore Analytics non disponibile.
+                            <?php if ($google_analytics_error !== null) : ?>
+                                <?php echo esc_html($google_analytics_error); ?>
+                            <?php else : ?>
+                                Verifica i log PHP/WordPress per i dettagli.
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </p>
+                <?php endif; ?>
             </div>
-        <div>
 
-        <h1 class="hero-title">
-            <span class="line-vinci">VINCI</span>
-            <span class="line-ibiza">IBIZA</span>
-        </h1>
-
-        <p class="hero-subtitle">
-            Vivi il <strong>Closing Party di Gordo al Pacha</strong><br>
-            insieme a Radio Kiss Kiss. Un'esperienza unica nell'isola della musica.
-        </p>
-
-        <div class="hero-actions">
-            <div class="hero-deadline">Candidati entro il 28 luglio 2026 alle 23:59</div>
-            <a href="#partecipa" class="btn-cta">Inserisci il Codice LOCO</a>
+            <div class="freq">Media kit digitale · sito · mobile · app</div>
+            <h1>Scegli dove<br>si <span>vede</span> il tuo brand</h1>
+            <p><?php echo nl2br(esc_html($options['hero_subtitle'])); ?></p>
         </div>
-    </section>
+    </header>
 
-    <!-- WAVE -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,25 C360,50 720,0 1080,25 C1260,38 1380,20 1440,25 L1440,50 L0,50 Z" fill="#f4f8fb" />
-        </svg>
-    </div>
-
-    <!-- STEPS -->
-    <div class="section">
-        <p class="section-label">Come partecipare</p>
-        <h2 class="section-title">Tre passi verso Ibiza</h2>
-        <div class="steps-grid">
-            <div class="step-card">
-                <div class="step-num">01</div>
-                <div class="step-title">Ascolta Kiss Kiss</div>
-                <div class="step-desc">Sintonizzati su Radio Kiss Kiss e individua il <strong>Codice LOCO</strong> trasmesso in onda. Tienilo pronto: ti servirà per candidarti.</div>
-            </div>
-            <div class="step-card">
-                <div class="step-num">02</div>
-                <div class="step-title">Registrati o accedi</div>
-                <div class="step-desc">Accedi alla Community Radio Kiss Kiss o crea il tuo account gratuitamente. Un solo profilo, un'unica candidatura.</div>
-            </div>
-            <div class="step-card">
-                <div class="step-num">03</div>
-                <div class="step-title">Convinci noi</div>
-                <div class="step-desc">Compila il modulo con i tuoi dati e il Codice LOCO. Poi rispondi: perché proprio tu meriti di vivere questa notte al Pacha?</div>
-            </div>
+    <main class="wrap" id="<?php echo esc_attr($instance_id); ?>-formati">
+        <div class="controls">
+            <div class="devices" role="tablist" aria-label="Dispositivo"></div>
+            <div class="filters"></div>
         </div>
-    </div>
 
-    <!-- FORM -->
-    <div class="form-section" id="partecipa">
-        <div class="form-inner">
-            <div class="form-header">
-                <p class="section-label">Fase 2 – Candidatura</p>
-                <h2 class="section-title" style="margin-bottom:8px">La tua candidatura</h2>
-                <p style="color:var(--text-muted); font-size:14px">Hai tempo fino al <strong style="color:var(--text)">28 luglio 2026 ore 23:59</strong></p>
-            </div>
-            <form onsubmit="return false;">
-                <div class="form-grid">
-                    <div class="field">
-                        <label>Nome *</label>
-                        <input type="text" placeholder="Il tuo nome">
-                    </div>
-                    <div class="field">
-                        <label>Cognome *</label>
-                        <input type="text" placeholder="Il tuo cognome">
-                    </div>
-                    <div class="field">
-                        <label>Email *</label>
-                        <input type="email" placeholder="nome@email.com">
-                    </div>
-                    <div class="field">
-                        <label>Telefono *</label>
-                        <input type="tel" placeholder="+39 000 000 0000">
-                    </div>
-                    <div class="field full codice-loco-field">
-                        <label>Codice LOCO *</label>
-                        <input type="text" placeholder="INSERISCI IL CODICE" maxlength="20" id="codice-input">
-                    </div>
-                    <div class="field full">
-                        <p class="motivazione-question">"Perché proprio tu dovresti vivere il Closing Party di Gordo al Pacha insieme a Radio Kiss Kiss?"</p>
-                        <textarea id="motivazione" maxlength="500" placeholder="Racconta in massimo 500 caratteri perché meriti questa notte…" oninput="updateCounter()"></textarea>
-                        <div class="char-counter"><span id="counter">0</span> / 500 caratteri</div>
-                    </div>
-                    <div class="field full">
-                        <label class="privacy-note">
-                            <input type="checkbox">
-                            <span>Acconsento al trattamento dei miei dati personali ai sensi del D.Lgs. 196/2003 e del GDPR 2016/679 per la partecipazione al concorso. <a href="#" style="color:var(--kk-blue)">Leggi il regolamento completo.</a></span>
-                        </label>
-                    </div>
-                </div>
-                <button type="submit" class="btn-submit">🍒 Invia la mia candidatura</button>
-                <p class="one-shot-note">Ogni partecipante può inviare una sola candidatura</p>
-            </form>
+        <div class="sec-head">
+            <h2 class="section-title"></h2>
+            <p class="section-subtitle">Sito <?php echo esc_html($options['name']); ?> da computer</p>
         </div>
-    </div>
-
-    <!-- PRIZE -->
-    <div class="prize-section">
-        <div class="prize-card">
-            <div class="prize-tag">Il Premio</div>
-            <h2 class="prize-title">Una Notte al Pacha di Ibiza<br>con Radio Kiss Kiss</h2>
-            <p class="prize-subtitle">Vivi il leggendario <strong>Closing Party di Gordo</strong> nel club più iconico di Ibiza, ospite esclusivo di Radio Kiss Kiss.</p>
-            <div class="prize-details">
-                <div class="prize-item">
-                    <span class="label">Viaggio</span>
-                    <span class="value">Incluso</span>
-                </div>
-                <div class="prize-divider"></div>
-                <div class="prize-item">
-                    <span class="label">Ingresso</span>
-                    <span class="value">Pacha Ibiza</span>
-                </div>
-                <div class="prize-divider"></div>
-                <div class="prize-item">
-                    <span class="label">Artista</span>
-                    <span class="value">Gordo</span>
-                </div>
-                <div class="prize-divider"></div>
-                <div class="prize-item">
-                    <span class="label">Con</span>
-                    <span class="value">Kiss Kiss</span>
-                </div>
-            </div>
+        <div class="grid" aria-live="polite">
+            <?php foreach ($options['formats'] as $format) : ?>
+                <?php if ($format['dev'] !== 'desktop') { continue; } ?>
+                <article class="card">
+                    <div class="pv">
+                        <div class="server-preview" aria-hidden="true">ADV</div>
+                    </div>
+                    <div class="card-top">
+                        <h3><?php echo esc_html($format['name']); ?></h3>
+                        <span class="tag"><?php echo esc_html($format_categories[$format['cat']] ?? $format['cat']); ?></span>
+                    </div>
+                    <dl class="spec">
+                        <div><dt>Posizionamento</dt><dd><?php echo esc_html($format['place']); ?></dd></div>
+                        <div><dt>Comportamento</dt><dd><?php echo esc_html($format['fx']); ?></dd></div>
+                        <div><dt>Dimensioni</dt><dd class="mono"><?php echo esc_html($format['dims']); ?></dd></div>
+                    </dl>
+                    <div class="price">
+                        <div>
+                            <div class="model"><?php echo esc_html($format['model']); ?></div>
+                            <?php if ($format['price'] === null) : ?>
+                                <span class="val empty">€ —</span>
+                            <?php else : ?>
+                                <span class="val"><?php echo esc_html(number_format_i18n((float) $format['price'], 2)); ?>&nbsp;€</span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" type="button" data-demo="<?php echo esc_attr($format['id']); ?>">Vedi demo</button>
+                        <button class="link" type="button" data-sheet="<?php echo esc_attr($format['id']); ?>">Scheda tecnica</button>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </div>
-    </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>
-            © 2026 Radio Kiss Kiss. Concorso valido fino al 28/07/2026 ore 23:59.<br>
-            Iniziativa soggetta al regolamento disponibile su <a href="#">www.kisskiss.it</a>. Vietato ai minori di 18 anni.<br>
-            Radio Kiss Kiss non è affiliata a Pacha Ibiza. Tutti i marchi citati sono di proprietà dei rispettivi titolari.
-        </p>
-    </footer>
+        <section id="<?php echo esc_attr($instance_id); ?>-listino">
+            <div class="sec-head">
+                <h2>Listino <em>per posizionamento</em></h2>
+                <p>Prezzi da compilare. I formati impact e le sponsorship hanno di norma un costo diverso dallo standard: qui li vedi tutti affiancati.</p>
+            </div>
+            <div class="tbl-wrap">
+                <table class="price-list">
+                    <thead>
+                        <tr><th>Formato</th><th>Categoria</th><th>Dimensioni</th><th>Modello</th><th>Prezzo</th></tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach (['desktop' => 'Desktop', 'mobile' => 'Mobile'] as $device => $device_label) : ?>
+                            <tr><td colspan="5" class="dev-label"><?php echo esc_html($device_label); ?></td></tr>
+                            <?php foreach ($options['formats'] as $format) : ?>
+                                <?php if ($format['dev'] !== $device) { continue; } ?>
+                                <tr>
+                                    <td><strong><?php echo esc_html($format['name']); ?></strong></td>
+                                    <td><?php echo esc_html($format_categories[$format['cat']] ?? $format['cat']); ?></td>
+                                    <td class="num"><?php echo esc_html($format['size']); ?></td>
+                                    <td><?php echo esc_html($format['model']); ?></td>
+                                    <td class="num">
+                                        <?php if ($format['price'] === null) : ?>
+                                            <span class="pill">Da definire</span>
+                                        <?php else : ?>
+                                            <?php echo esc_html(number_format_i18n((float) $format['price'], 2)); ?>&nbsp;€
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-    <script>
-        function updateCounter() {
-            document.getElementById('counter').textContent = document.getElementById('motivazione').value.length;
-        }
-        document.getElementById('codice-input').addEventListener('input', function() {
-            this.value = this.value.toUpperCase();
-        });
-        document.querySelector('.btn-cta').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('partecipa').scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    </script>
+        <section class="contact" id="<?php echo esc_attr($instance_id); ?>-contatti">
+            <div>
+                <h2><?php echo nl2br(esc_html($options['final_message'])); ?></h2>
+                <p>Raccontaci obiettivo, periodo e budget: ti proponiamo il mix di formati su sito e app.</p>
+                <div class="addr">Contatto commerciale: da inserire</div>
+            </div>
+            <div class="steps">
+                <div class="step"><i>1</i>Scegli i formati</div>
+                <div class="step"><i>2</i>Richiedi il preventivo</div>
+                <div class="step"><i>3</i>Invia le creatività</div>
+            </div>
+        </section>
+
+        <footer>Dimensioni in pixel secondo i formati standard IAB. Formati, comportamenti e prezzi sono una proposta di lavoro e non un listino ufficiale.</footer>
+    </main>
+
+    <dialog class="format-dialog" aria-label="Dettagli formato">
+        <div class="dlg-head">
+            <div><small class="dialog-device"></small><h3 class="dialog-title"></h3></div>
+            <button class="x" type="button" aria-label="Chiudi">×</button>
+        </div>
+        <div class="dlg-tabs" role="tablist">
+            <button class="tab-demo" type="button" role="tab" aria-selected="true">Demo</button>
+            <button class="tab-sheet" type="button" role="tab" aria-selected="false">Scheda tecnica</button>
+        </div>
+        <div class="dlg-body">
+            <div class="panel-demo"><div class="demo-stage"></div><p class="demo-note"></p></div>
+            <div class="panel-sheet" hidden><div class="tbl-wrap"><table class="sheet"></table></div></div>
+        </div>
+    </dialog>
 </div>
-
